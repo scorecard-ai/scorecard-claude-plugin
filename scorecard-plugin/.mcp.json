@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "scorecard": {
+      "type": "streamable-http",
+      "url": "https://mcp.scorecard.io/mcp"
+    }
+  }
+}
