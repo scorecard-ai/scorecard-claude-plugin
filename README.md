@@ -25,3 +25,7 @@ You'll need a Scorecard API key from https://app.scorecard.io/settings/api-keys
 ## Documentation
 
 For more information, visit https://docs.scorecard.io
+
+## Usage
+
+`claude --plugin-dir /Users/scorecard-yashthapliyal/Scorecard/scorecard-claude-plugin/scorecard-plugin`
