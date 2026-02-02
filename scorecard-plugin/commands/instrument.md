@@ -1,3 +1,8 @@
+---
+description: Set up Scorecard tracing for your LLM application
+allowed-tools: [Read, Glob, Grep, Edit, Write, Bash]
+---
+
 # Instrument with Scorecard
 
 Set up Scorecard tracing for your LLM application.

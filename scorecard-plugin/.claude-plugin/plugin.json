@@ -18,11 +18,5 @@
     "url": "https://scorecard.io"
   },
   "homepage": "https://scorecard.io",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scorecard-ai/scorecard-claude-plugin"
-  },
-  "bugs": {
-    "url": "https://github.com/scorecard-ai/scorecard-claude-plugin/issues"
-  }
+  "repository": "https://github.com/scorecard-ai/scorecard-claude-plugin"
 }

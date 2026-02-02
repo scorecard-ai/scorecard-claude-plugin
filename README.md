@@ -10,24 +10,18 @@ A Claude Code plugin for integrating with the [Scorecard](https://scorecard.io) 
 
 ## Installation
 
-Add to your `.claude/plugins.json`:
+Clone the repo and run Claude Code with the `--plugin-dir` flag:
 
-```json
-{
-  "plugins": [
-    {
-      "name": "scorecard",
-      "source": "github:scorecard-ai/scorecard-claude-plugin/scorecard-plugin"
-    }
-  ]
-}
+```bash
+git clone https://github.com/scorecard-ai/scorecard-claude-plugin.git
+claude --plugin-dir /path/to/scorecard-claude-plugin/scorecard-plugin
 ```
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/instrument` | Set up Scorecard tracing for your LLM application |
+| `/scorecard:instrument` | Set up Scorecard tracing for your LLM application |
 
 ## Supported Integrations
 
