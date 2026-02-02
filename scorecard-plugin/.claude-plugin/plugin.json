@@ -1,6 +1,6 @@
 {
   "name": "scorecard",
-  "description": "Run Scorecard evaluations and work with the Scorecard AI evaluation platform",
+  "description": "Instrument LLM applications with Scorecard tracing, run evaluations, and monitor AI performance",
   "version": "1.0.0",
   "keywords": [
     "ai",
@@ -9,10 +9,20 @@
     "testing",
     "metrics",
     "tracing",
-    "observability"
+    "observability",
+    "opentelemetry",
+    "monitoring"
   ],
   "author": {
-    "name": "Scorecard"
+    "name": "Scorecard",
+    "url": "https://scorecard.io"
   },
-  "repository": "https://github.com/scorecard-ai/scorecard"
+  "homepage": "https://scorecard.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scorecard-ai/scorecard-claude-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/scorecard-ai/scorecard-claude-plugin/issues"
+  }
 }

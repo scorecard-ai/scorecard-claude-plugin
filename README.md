@@ -10,22 +10,41 @@ A Claude Code plugin for integrating with the [Scorecard](https://scorecard.io) 
 
 ## Installation
 
-Add this plugin to your Claude Code configuration.
+Add to your `.claude/plugins.json`:
+
+```json
+{
+  "plugins": [
+    {
+      "name": "scorecard",
+      "source": "github:scorecard-ai/scorecard-claude-plugin/scorecard-plugin"
+    }
+  ]
+}
+```
 
 ## Commands
 
-- `/instrument` - Set up Scorecard tracing for your LLM application (supports OpenAI, Anthropic, Vercel AI SDK, and Claude Agent SDK)
+| Command | Description |
+|---------|-------------|
+| `/instrument` | Set up Scorecard tracing for your LLM application |
+
+## Supported Integrations
+
+- OpenAI SDK (JavaScript, Python)
+- Anthropic SDK (JavaScript, Python)
+- Claude Agent SDK
+- Vercel AI SDK
+- Existing OpenTelemetry setups
 
 ## Configuration
 
-The plugin connects to Scorecard's MCP server at `https://mcp.scorecard.io/mcp`.
-
-You'll need a Scorecard API key from https://app.scorecard.io/settings/api-keys
+1. Get your API key from [app.scorecard.io/settings/api-keys](https://app.scorecard.io/settings/api-keys)
+2. Add to your `.env` file:
+   ```
+   SCORECARD_API_KEY=ak_your_api_key_here
+   ```
 
 ## Documentation
 
-For more information, visit https://docs.scorecard.io
-
-## Usage
-
-`claude --plugin-dir /Users/scorecard-yashthapliyal/Scorecard/scorecard-claude-plugin/scorecard-plugin`
+For more information, visit [docs.scorecard.io](https://docs.scorecard.io)
