@@ -8,7 +8,7 @@ All possible Scorecard-related env vars by integration type. Only add the vars r
 SCORECARD_API_KEY=<your_scorecard_api_key>
 ```
 
-Get this from https://app.scorecard.io/settings/api-keys (starts with `ak_`).
+Get this from https://app.scorecard.io/settings (starts with `ak_`).
 
 ## Proxy approach (OpenAI, Anthropic, Azure OpenAI)
 

@@ -41,7 +41,7 @@ The `/scorecard:instrument` skill scans your project, identifies which LLM SDKs 
 ## Prerequisites
 
 1. A [Scorecard](https://scorecard.io) account
-2. An API key from [app.scorecard.io/settings/api-keys](https://app.scorecard.io/settings/api-keys)
+2. An API key from [app.scorecard.io/settings](https://app.scorecard.io/settings)
 3. [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) CLI installed
 
 ## How It Works

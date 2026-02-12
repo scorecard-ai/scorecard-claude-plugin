@@ -77,7 +77,7 @@ Check the auto-detected "Gitignore status" above. If `.env` is not in `.gitignor
 - If `.gitignore` doesn't exist, create it with `.env` as the first entry
 
 Remind the user to:
-1. Get their API key from https://app.scorecard.io/settings/api-keys
+1. Get their API key from https://app.scorecard.io/settings
 2. Replace `<your_scorecard_api_key>` with their actual key (starts with `ak_`)
 
 ### Step 5: Verify and summarize
