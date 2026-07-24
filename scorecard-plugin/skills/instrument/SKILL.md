@@ -13,12 +13,13 @@ Set up Scorecard tracing for the user's LLM application.
 
 ## How Scorecard Tracing Works
 
-Scorecard offers two instrumentation approaches:
+Scorecard ingests OpenTelemetry traces. Choose an approach in this **priority order**:
 
-- **Proxy approach** — Redirect the LLM client's `baseURL` to `https://llm.scorecard.io`. Scorecard transparently forwards requests to the LLM provider while capturing telemetry. Simplest setup (no extra dependencies). Works with OpenAI, Anthropic, and Azure OpenAI SDKs.
-- **OTEL/SDK approach** — Send OpenTelemetry traces to `https://tracing.scorecard.io/otel`. Used by Claude Agent SDK, LangChain, and projects with existing OTEL instrumentation. Also available via the `scorecard-ai` wrapper SDK for deeper integration.
+1. **Built-in OTEL via env vars (preferred)** — If the app is built on the **Claude Agent SDK** (or another framework with built-in OTEL tracing), enable tracing purely by setting environment variables. No code changes. Traces go to `https://tracing.scorecard.io/otel`.
+2. **OTEL instrumentation (fallback)** — For any other app, emit OpenTelemetry traces to Scorecard. Existing-OTEL and LangChain apps use their standard exporters; everything else (raw OpenAI/Anthropic/custom) uses **manual instrumentation that emits spans in the same shape the Claude Agent SDK emits**, so Scorecard ingests and renders them identically (turn-by-turn conversation view), branded with the app's own `service.name`.
+3. **Proxy / SDK wrapper (lower-priority fallback)** — Simpler but less faithful. Redirect the client `baseURL` to `https://llm.scorecard.io` (proxy), or wrap with the `scorecard-ai` SDK. Offer these only if the user prefers a minimal-code option over #2.
 
-Both approaches support streaming responses.
+All approaches support streaming responses.
 
 ## Project context (auto-detected)
 
@@ -52,17 +53,26 @@ Check for each of these:
 
 ### Step 3: Implement instrumentation
 
-Read the appropriate integration file(s) and apply the instructions:
+Pick the highest-priority approach that fits the detected stack (see "How Scorecard Tracing Works"). Read the relevant integration file(s) and apply the instructions.
 
-- For existing OpenTelemetry setups, see [integrations/opentelemetry.md](integrations/opentelemetry.md)
-- For OpenAI SDK (JS or Python), see [integrations/openai.md](integrations/openai.md)
-- For Anthropic SDK (JS or Python), see [integrations/anthropic.md](integrations/anthropic.md)
-- For Azure OpenAI, see [integrations/azure-openai.md](integrations/azure-openai.md)
-- For Claude Agent SDK, see [integrations/claude-agent-sdk.md](integrations/claude-agent-sdk.md)
-- For Vercel AI SDK, see [integrations/vercel-ai-sdk.md](integrations/vercel-ai-sdk.md)
-- For LangChain, see [integrations/langchain.md](integrations/langchain.md)
+**1. Built-in OTEL via env vars (preferred)**
 
-When modifying client initializations, find **all** places where the client is initialized (not just the first one). If the client has existing custom options (e.g., custom `baseURL`, `defaultHeaders`, `timeout`), merge the Scorecard config with the existing options rather than replacing them.
+- Claude Agent SDK → [integrations/claude-agent-sdk.md](integrations/claude-agent-sdk.md)
+
+**2. OTEL instrumentation (fallback)**
+
+- Existing OpenTelemetry setup → [integrations/opentelemetry.md](integrations/opentelemetry.md) (add Scorecard as an exporter)
+- LangChain → [integrations/langchain.md](integrations/langchain.md) (Traceloop / OpenLLMetry)
+- Any other app — raw OpenAI/Anthropic/custom → [integrations/manual-otel.md](integrations/manual-otel.md) (**recommended fallback**: emit Agent-SDK-shaped spans)
+
+**3. Proxy / SDK wrapper (lower-priority fallback)** — use only if the user explicitly prefers minimal code over the OTEL paths above:
+
+- OpenAI (proxy) → [integrations/openai.md](integrations/openai.md)
+- Anthropic (proxy) → [integrations/anthropic.md](integrations/anthropic.md)
+- Azure OpenAI (proxy) → [integrations/azure-openai.md](integrations/azure-openai.md)
+- Vercel AI SDK (`scorecard-ai` wrapper) → [integrations/vercel-ai-sdk.md](integrations/vercel-ai-sdk.md)
+
+When modifying client initializations or wrapping LLM calls, handle **all** call sites (not just the first one). If a client has existing custom options (e.g., custom `baseURL`, `defaultHeaders`, `timeout`), merge the Scorecard config with the existing options rather than replacing them.
 
 ### Step 4: Update .env and .gitignore
 
