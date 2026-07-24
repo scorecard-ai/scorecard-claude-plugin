@@ -1,5 +1,7 @@
 # OpenAI SDK Integration
 
+> **Lower-priority fallback.** Prefer built-in or manual OTEL (see SKILL.md); use this only if the user wants a minimal-code option.
+
 Uses the proxy approach: redirect the OpenAI client's `baseURL` to Scorecard's proxy.
 
 ## JavaScript / TypeScript

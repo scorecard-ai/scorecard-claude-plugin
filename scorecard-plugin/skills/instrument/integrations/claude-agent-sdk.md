@@ -10,13 +10,15 @@ Add these to the `.env` file (create if it doesn't exist):
 OTEL_EXPORTER_OTLP_HEADERS="Authorization=Bearer <your_scorecard_api_key>"
 ENABLE_BETA_TRACING_DETAILED=1
 BETA_TRACING_ENDPOINT="https://tracing.scorecard.io/otel"
-```
-
-Optionally, to target a specific Scorecard project:
-
-```
+OTEL_LOG_USER_PROMPTS=1
+OTEL_LOG_TOOL_DETAILS=1
+OTEL_LOG_TOOL_CONTENT=1
 OTEL_RESOURCE_ATTRIBUTES="scorecard.project_id=<your-project-id>"
 ```
+
+- `ENABLE_BETA_TRACING_DETAILED=1` turns on detailed spans and attributes.
+- The three `OTEL_LOG_*` vars are what actually capture prompt and tool content. Without `OTEL_LOG_USER_PROMPTS=1`, the user prompt is recorded as `<REDACTED>`.
+- `OTEL_RESOURCE_ATTRIBUTES` routes traces to a specific project. Omit it and traces land in your org's oldest project.
 
 ## What gets captured automatically
 

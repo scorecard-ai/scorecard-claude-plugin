@@ -1,5 +1,7 @@
 # Vercel AI SDK Integration
 
+> **Lower-priority fallback.** Prefer built-in or manual OTEL (see SKILL.md); use this only if the user wants a minimal-code option.
+
 Uses the SDK wrapper approach: wrap the `ai` module with Scorecard's `wrapAISDK` function.
 
 ## Setup
